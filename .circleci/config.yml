@@ -28,7 +28,7 @@ workflows:
   my_workflow: 
     triggers:
       - schedule:
-        cron: "*/5 * * * *"
+          cron: "*/5 * * * *"
     # when:
     #   equal: [ "every_min", << pipeline.schedule.name >> ]
     # jobs:
