@@ -32,9 +32,9 @@ workflows:
 
   commit:
     jobs:
-      - build-and-test:
-          env: dev
-          reg: aws
+      - build-and-test
+          # env: dev
+          # reg: aws
 
 
 
