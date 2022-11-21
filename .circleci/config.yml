@@ -25,10 +25,16 @@ jobs:
 workflows:
   version: 2
 
-  my_workflow: 
-    triggers:
-      - schedule:
-          cron: "*/5 * * * *"
+  commit:
+    jobs:
+      - build-and-test
+
+
+
+  # my_workflow: 
+  #   triggers:
+  #     - schedule:
+  #         cron: "*/5 * * * *"
     # when:
     #   equal: [ "every_min", << pipeline.schedule.name >> ]
     # jobs:
