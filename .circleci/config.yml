@@ -27,11 +27,11 @@ jobs:
 
 
 workflows:
-  version: 2.1
+  version: 2
 
   build-deploy:
     when:
-      equal: [ "every_min", << pipeline.schedule.name >> ]
+      - equal: [ "every_min", << pipeline.schedule.name >> ]
     jobs:
       - build-and-test
 
