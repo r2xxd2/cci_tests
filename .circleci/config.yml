@@ -1,14 +1,14 @@
 
 version: 2.1
 
-parameters:
-  test_env:
-    default: dev
-    type: string
+# parameters:
+#   test_env:
+#     default: dev
+#     type: string
 
-  test_reg:
-    default: aws
-    type: string
+#   test_reg:
+#     default: aws
+#     type: string
 
 jobs:
   build-and-test: 
