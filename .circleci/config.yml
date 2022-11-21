@@ -7,10 +7,8 @@ jobs:
     parameters:
       env:
         type: string
-        default: "development"
       reg:
         type: string
-        default: "us"
     steps:
       - checkout
       - run:
