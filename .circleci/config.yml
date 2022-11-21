@@ -5,9 +5,9 @@ jobs:
       - image: cimg/python:3.10.2
     
     parameters:
-
       env:
         type: string
+        default: ""
 
     steps:
       - checkout
@@ -32,7 +32,7 @@ workflows:
   commit:
     jobs:
       - build-and-test:
-          env: dev
+          env: "dev"
 
 
 
