@@ -15,10 +15,10 @@ jobs:
     docker:
       - image: cimg/python:3.10.2
     
-    # parameters:
-    #   env:
-    #     type: string
-    #     default: ""
+    parameters:
+      env:
+        type: string
+        default: ""
 
     # echo << parameters.env >>
     steps:
