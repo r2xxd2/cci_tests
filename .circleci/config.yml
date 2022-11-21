@@ -28,14 +28,13 @@ jobs:
           no_output_timeout: 30m
           command: |
             echo "tests ########"
-            echo << parameters.env >>
             cd tests
             python -m venv venv
             . venv/bin/activate
             python -m pip install --upgrade pip
             pip install wheel
             pip install -r requirements.txt
-            pytest -v -s
+            << parameters.env >>
 
 
 workflows:
@@ -46,7 +45,7 @@ workflows:
       equal: [ "every_min", << pipeline.schedule.name >> ]
     jobs:
       - build-and-test:
-          env: "dev"
+          env: "pytest -v -s"
 
 
   # commit:
