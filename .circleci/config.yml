@@ -3,16 +3,21 @@ jobs:
   build-and-test: 
     docker:
       - image: cimg/python:3.10.2
+    
+    parameters:
+      env:
+        type: string
+        default: "development"
+      reg:
+        type: string
+        default: "us"
     steps:
       - checkout
-      # - python/install-packages:
-      #     pkg-manager: pip
-          # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
-          # pip-dependency-file: test-requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
       - run:
           name: run tests
           no_output_timeout: 30m
           command: |
+            echo "tests ########"
             cd tests
             python -m venv venv
             . venv/bin/activate
@@ -27,7 +32,10 @@ workflows:
 
   commit:
     jobs:
-      - build-and-test
+      - build-and-test:
+        name: my-test-job-name
+        env: dev
+        reg: aws
 
 
 
