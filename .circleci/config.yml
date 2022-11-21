@@ -1,13 +1,24 @@
 
+version: 2.1
+
+parameters:
+  test_env:
+    default: dev
+    type: string
+
+  test_reg:
+    default: aws
+    type: string
+
 jobs:
   build-and-test: 
     docker:
       - image: cimg/python:3.10.2
     
-    parameters:
-      env:
-        type: string
-        default: ""
+    # parameters:
+    #   env:
+    #     type: string
+    #     default: ""
 
     steps:
       - checkout
