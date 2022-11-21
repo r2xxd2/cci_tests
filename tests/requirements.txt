@@ -1,2 +1,5 @@
-pytest==6.2.0
-requests==2.22.0
+# pytest==6.2.0
+# requests==2.22.0
+
+pytest
+requests
