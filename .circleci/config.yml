@@ -33,8 +33,7 @@ workflows:
     when:
       equal: [ "every_min", << pipeline.schedule.name >> ]
     jobs:
-      - build-and-test:
-          env: "dev"
+      - build-and-test
 
 
   # commit:
