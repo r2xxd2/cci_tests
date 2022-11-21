@@ -33,7 +33,6 @@ workflows:
   commit:
     jobs:
       - build-and-test:
-          name: my-test-job-name
           env: dev
           reg: aws
 
