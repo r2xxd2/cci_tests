@@ -29,10 +29,16 @@ jobs:
 workflows:
   version: 2
 
-  commit:
+  build:
     jobs:
-      - build-and-test:
-          env: "dev"
+        - build-and-test:
+            env: "dev"
+
+
+  # commit:
+  #   jobs:
+  #     - build-and-test:
+  #         env: "dev"
 
 
 
