@@ -27,7 +27,7 @@ jobs:
           no_output_timeout: 30m
           command: |
             echo "tests ########"
-            echo << parameters.env >>
+            # echo << parameters.env >>
             cd tests
             python -m venv venv
             . venv/bin/activate
@@ -42,7 +42,7 @@ workflows:
 
   build-deploy:
     when:
-      - equal: [ "every_min", << pipeline.schedule.name >> ]
+      equal: [ "every_min", << pipeline.schedule.name >> ]
     jobs:
       - build-and-test
 
