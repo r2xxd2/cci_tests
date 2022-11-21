@@ -23,6 +23,7 @@ jobs:
 
 
 workflows:
+  version: 2
   my_workflow: 
     when:
         equal: [ "every_min", << pipeline.schedule.name >> ]
