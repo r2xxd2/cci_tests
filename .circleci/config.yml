@@ -59,7 +59,7 @@ workflows:
     #       msg: "run job-3"
     jobs:
       - build-and-test:
-          name: job-<< matrix.num >>
+          name: job-<< matrix.env >>
           matrix:
             parameters:
               env: ["num1", "num2", "num3"]
