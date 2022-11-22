@@ -19,6 +19,9 @@ jobs:
       env:
         type: string
         default: ""
+      msg:
+        type: string
+        default: ""
 
     # echo << parameters.env >>
     steps:
@@ -28,6 +31,7 @@ jobs:
           no_output_timeout: 30m
           command: |
             echo "tests ########"
+            echo << parameters.msg >>
             cd tests
             python -m venv venv
             . venv/bin/activate
@@ -37,23 +41,29 @@ jobs:
             << parameters.env >>
 
 
-# workflows:
-#   # version: 2
+workflows:
+  # version: 2
 
-#   build-deploy:
-#     when:
-#       equal: [ "every_min", << pipeline.schedule.name >> ]
-#     jobs:
-#       - build-and-test:
-#           env: "pytest -v -s"
-#       - build-and-test:
-#           requires:
-#             - build-and-test
-#           env: "pytest -v -s"
-#       - build-and-test:
-#           requires:
-#             - build-and-test
-#           env: "pytest -v -s"
+  build-deploy:
+    when:
+      equal: [ "every_min", << pipeline.schedule.name >> ]
+    jobs:
+      - build-and-test:
+          name: job-1
+          env: "pytest -v -s"
+          msg: "run job-1"
+      - build-and-test:
+          name: job-2
+          requires:
+            - job-1
+          env: "pytest -v -s"
+          msg: "run job-2"
+      - build-and-test:
+          name: job-3
+          requires:
+            - job-2
+          env: "pytest -v -s"
+          msg: "run job-3"
 
 
 
