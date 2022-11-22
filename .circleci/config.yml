@@ -15,6 +15,7 @@ jobs:
         default: ""
 
     # echo << parameters.env >>
+    # << parameters.env >>
     steps:
       - checkout
       - run:
@@ -22,14 +23,15 @@ jobs:
           no_output_timeout: 30m
           command: |
             echo "tests ########"
-            echo << parameters.msg >>
+            echo << parameters.env >>
             cd tests
             python -m venv venv
             . venv/bin/activate
             python -m pip install --upgrade pip
             pip install wheel
             pip install -r requirements.txt
-            << parameters.env >>
+            pytest -v -s
+            
 
 
 workflows:
@@ -38,20 +40,28 @@ workflows:
   build-deploy:
     when:
       equal: [ "every_min", << pipeline.schedule.name >> ]
+    # jobs:
+    #   - build-and-test:
+    #       name: job-1
+    #       env: "pytest -v -s"
+    #       msg: "run job-1"
+    #   - build-and-test:
+    #       name: job-2
+    #       # requires:
+    #       #   - job-1
+    #       env: "pytest -v -s requirements.txt"
+    #       msg: "run job-2"
+    #   - build-and-test:
+    #       name: job-3
+    #       # requires:
+    #       #   - job-2
+    #       env: "pytest -v -s"
+    #       msg: "run job-3"
     jobs:
       - build-and-test:
-          name: job-1
-          env: "pytest -v -s"
-          msg: "run job-1"
-      - build-and-test:
-          name: job-2
-          # requires:
-          #   - job-1
-          env: "pytest -v -s requirements.txt"
-          msg: "run job-2"
-      - build-and-test:
-          name: job-3
-          # requires:
-          #   - job-2
-          env: "pytest -v -s"
-          msg: "run job-3"
+          name: job-<< matrix.num >>
+          matrix:
+            parameters:
+              env: ["num1", "num2", "num3"]
+
+
