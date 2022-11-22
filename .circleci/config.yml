@@ -1,15 +1,6 @@
 
 version: 2.1
 
-# parameters:
-#   test_env:
-#     default: dev
-#     type: string
-
-#   test_reg:
-#     default: aws
-#     type: string
-
 jobs:
   build-and-test: 
     docker:
@@ -56,7 +47,7 @@ workflows:
           name: job-2
           requires:
             - job-1
-          env: "pytest -v -s"
+          env: "pytest -v -s abc"
           msg: "run job-2"
       - build-and-test:
           name: job-3
@@ -64,15 +55,4 @@ workflows:
             - job-2
           env: "pytest -v -s"
           msg: "run job-3"
-
-
-
-
-  # my_workflow: 
-  #   triggers:
-  #     - schedule:
-  #         cron: "*/5 * * * *"
-    # when:
-    #   equal: [ "every_min", << pipeline.schedule.name >> ]
-    # jobs:
-    #   - build-and-test
+          msg: "run job-3"
