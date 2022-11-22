@@ -1,36 +1,36 @@
 
-version: 2.1
+# version: 2.1
 
-jobs:
-  build-and-test: 
-    docker:
-      - image: cimg/python:3.10.2
+# jobs:
+#   build-and-test: 
+#     docker:
+#       - image: cimg/python:3.10.2
     
-    parameters:
-      env:
-        type: string
-        default: ""
-      msg:
-        type: string
-        default: ""
+#     parameters:
+#       env:
+#         type: string
+#         default: ""
+#       msg:
+#         type: string
+#         default: ""
 
-    # echo << parameters.env >>
-    # << parameters.env >>
-    steps:
-      - checkout
-      - run:
-          name: run tests
-          no_output_timeout: 30m
-          command: |
-            echo "tests ########"
-            echo << parameters.env >>
-            cd tests
-            python -m venv venv
-            . venv/bin/activate
-            python -m pip install --upgrade pip
-            pip install wheel
-            pip install -r requirements.txt
-            pytest -v -s
+#     # echo << parameters.env >>
+#     # << parameters.env >>
+#     steps:
+#       - checkout
+#       - run:
+#           name: run tests
+#           no_output_timeout: 30m
+#           command: |
+#             echo "tests ########"
+#             echo << parameters.env >>
+#             cd tests
+#             python -m venv venv
+#             . venv/bin/activate
+#             python -m pip install --upgrade pip
+#             pip install wheel
+#             pip install -r requirements.txt
+#             pytest -v -s
             
 
 
