@@ -34,48 +34,51 @@ jobs:
             
 
 
-workflows:
-  # version: 2
+# workflows:
+#   # version: 2
 
-  build-deploy:
-    when:
-      equal: [ "every_min", << pipeline.schedule.name >> ]
-    # jobs:
-    #   - build-and-test:
-    #       name: job-1
-    #       env: "pytest -v -s"
-    #       msg: "run job-1"
-    #   - build-and-test:
-    #       name: job-2
-    #       # requires:
-    #       #   - job-1
-    #       env: "pytest -v -s requirements.txt"
-    #       msg: "run job-2"
-    #   - build-and-test:
-    #       name: job-3
-    #       # requires:
-    #       #   - job-2
-    #       env: "pytest -v -s"
-    #       msg: "run job-3"
-    jobs:
-      - build-and-test:
-          name: job-1-<< matrix.env >>
-          matrix:
-            parameters:
-              env: [
-                "num1", 
-                "num2", 
-                "num3"
-                ]
+#   build-deploy:
+#     when:
+#       equal: [ "every_min", << pipeline.schedule.name >> ]
+#     # jobs:
+#     #   - build-and-test:
+#     #       name: job-1
+#     #       env: "pytest -v -s"
+#     #       msg: "run job-1"
+#     #   - build-and-test:
+#     #       name: job-2
+#     #       # requires:
+#     #       #   - job-1
+#     #       env: "pytest -v -s requirements.txt"
+#     #       msg: "run job-2"
+#     #   - build-and-test:
+#     #       name: job-3
+#     #       # requires:
+#     #       #   - job-2
+#     #       env: "pytest -v -s"
+#     #       msg: "run job-3"
 
-      - build-and-test:
-          name: job-2-<< matrix.env >>
-          matrix:
-            parameters:
-              env: [
-                "num4", 
-                "num5", 
-                "num6"
-                ]
+
+
+#     # jobs:
+#     #   - build-and-test:
+#     #       name: job-1-<< matrix.env >>
+#     #       matrix:
+#     #         parameters:
+#     #           env: [
+#     #             "num1", 
+#     #             "num2", 
+#     #             "num3"
+#     #             ]
+
+#     #   - build-and-test:
+#     #       name: job-2-<< matrix.env >>
+#     #       matrix:
+#     #         parameters:
+#     #           env: [
+#     #             "num4", 
+#     #             "num5", 
+#     #             "num6"
+#     #             ]
 
 
