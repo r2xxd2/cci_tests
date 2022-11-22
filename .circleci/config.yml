@@ -47,7 +47,7 @@ workflows:
           name: job-2
           requires:
             - job-1
-          env: "pytest -v -s"
+          env: "pytest -v -s requirements.txt"
           msg: "run job-2"
       - build-and-test:
           name: job-3
