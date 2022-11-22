@@ -55,4 +55,3 @@ workflows:
             - job-2
           env: "pytest -v -s"
           msg: "run job-3"
-          msg: "run job-3"
