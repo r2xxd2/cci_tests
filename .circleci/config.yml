@@ -44,50 +44,54 @@ workflows:
   api-tests:
     when:
       equal: [ "every_min", << pipeline.schedule.name >> ]
+      
+      
+#     jobs:
+#       - run-api-tests:
+#           name: job-name-1
+#           cmd: pytest -v -s
+#           msg: "run job-1"
+          
+#       - run-api-tests:
+#           name: job-name-2
+#           requires:
+#             - job-name-1
+#           cmd: pytest -v -s
+#           msg: "run job-2"
+          
+#       - run-api-tests:
+#           name: job-name-3
+#           requires:
+#             - job-name-2
+#           cmd: pytest -v -s
+#           msg: "run job-3"
+
+
     jobs:
       - run-api-tests:
-          name: job-name-1
-          cmd: pytest -v -s
-          msg: "run job-1"
-          
+          name: job-1-<< matrix.env >>-<< matrix.reg >>
+          cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
+          matrix:
+            parameters:
+              env: [dev, stg, prd]
+              reg: [aws]
+              
       - run-api-tests:
-          name: job-name-2
-          requires:
-            - job-name-1
-          cmd: pytest -v -s
-          msg: "run job-2"
-          
+          name: job-2-<< matrix.env >>-<< matrix.reg >>
+          cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
+          matrix:
+            parameters:
+              env: [dev, stg, prd]
+              reg: [aws]
+
       - run-api-tests:
-          name: job-name-3
           requires:
-            - job-name-2
-          cmd: pytest -v -s
-          msg: "run job-3"
-
-
-
-
-
-
-    # jobs:
-    #   - build-and-test:
-    #       name: job-1-<< matrix.env >>
-    #       matrix:
-    #         parameters:
-    #           env: [
-    #             "num1", 
-    #             "num2", 
-    #             "num3"
-    #             ]
-
-    #   - build-and-test:
-    #       name: job-2-<< matrix.env >>
-    #       matrix:
-    #         parameters:
-    #           env: [
-    #             "num4", 
-    #             "num5", 
-    #             "num6"
-    #             ]
+            - job-name-2-dev-aws
+          name: job-3-<< matrix.env >>-<< matrix.reg >>
+          cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
+          matrix:
+            parameters:
+              env: [dev, stg, prd]
+              reg: [aws]
 
 
