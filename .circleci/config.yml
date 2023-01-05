@@ -52,6 +52,8 @@ workflows:
           
       - run-api-tests:
           name: job-name-2
+          requires:
+            - job-name-1
           cmd: pytest -v -s
           msg: run job-2
           
