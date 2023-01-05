@@ -72,7 +72,7 @@ workflows:
     jobs:
       - run-api-tests:
           name: job-name-1-<< matrix.env >>-<< matrix.reg >>
-          cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
+          cmd: pytest -v -s --env << matrix.env >> --reg << matrix.reg >>
           matrix:
             parameters:
               env: [dev, stg, prd]
@@ -80,7 +80,7 @@ workflows:
               
       - run-api-tests:
           name: job-name-2-<< matrix.env >>-<< matrix.reg >>
-          cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
+          cmd: pytest -v -s --env << matrix.env >> --reg << matrix.reg >>
           matrix:
             parameters:
               env: [dev, stg, prd]
@@ -90,7 +90,7 @@ workflows:
           requires:
             - job-name-2-<< matrix.env >>-<< matrix.reg >>
           name: job-name-3-<< matrix.env >>-<< matrix.reg >>
-          cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
+          cmd: pytest -v -s --env << matrix.env >> --reg << matrix.reg >>
           matrix:
             parameters:
               env: [dev, stg, prd]
