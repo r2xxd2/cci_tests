@@ -51,7 +51,6 @@ workflows:
           # requires:
           #   - job-1
           com: pytest -v -s # "pytest -v -s requirements.txt"
-          com: pytest -v -s
           msg: "run job-2"
       - build-and-test:
           name: job-3
