@@ -13,12 +13,12 @@ jobs:
       msg:
         type: string
         default: ""
-#       env:
-#         type: string
-#         default: ""
-#       reg:
-#         type: string
-#         default: ""
+      env:
+        type: string
+        default: ""
+      reg:
+        type: string
+        default: ""
 
     steps:
       - checkout
