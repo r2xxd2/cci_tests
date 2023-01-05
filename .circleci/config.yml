@@ -7,7 +7,7 @@ jobs:
       - image: cimg/python:3.10.2
     
     parameters:
-      com:
+      cmd:
         type: string
         default: ""
       msg:
@@ -26,7 +26,7 @@ jobs:
           name: run tests
           no_output_timeout: 30m
           command: |
-            echo << parameters.com >>
+            echo << parameters.cmd >>
             cd tests
             python -m venv venv
             . venv/bin/activate
@@ -34,7 +34,7 @@ jobs:
             pip install wheel
             pip install -r requirements.txt
             # pytest -v -s
-            << parameters.com >>
+            << parameters.cmd >>
             
 
 
@@ -47,19 +47,19 @@ workflows:
     jobs:
       - run-api-tests:
           name: job-name-1
-          com: pytest -v -s
+          cmd: pytest -v -s
           msg: run job-1
           
       - run-api-tests:
           name: job-name-2
-          com: pytest -v -s
+          cmd: pytest -v -s
           msg: run job-2
           
       - run-api-tests:
           name: job-name-3
           requires:
             - job-name-2
-          com: pytest -v -s
+          cmd: pytest -v -s
           msg: run job-3
 
 
