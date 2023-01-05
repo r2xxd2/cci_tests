@@ -2,7 +2,7 @@
 version: 2.1
 
 jobs:
-  build-and-test: 
+  run-api-tests: 
     docker:
       - image: cimg/python:3.10.2
     
@@ -11,6 +11,12 @@ jobs:
         type: string
         default: ""
       msg:
+        type: string
+        default: ""
+      env:
+        type: string
+        default: ""
+      reg:
         type: string
         default: ""
 
@@ -22,7 +28,6 @@ jobs:
           name: run tests
           no_output_timeout: 30m
           command: |
-            echo "tests ########"
             echo << parameters.com >>
             cd tests
             python -m venv venv
@@ -38,26 +43,29 @@ jobs:
 workflows:
   # version: 2
 
-  build-deploy:
+  api-tests:
     when:
       equal: [ "every_min", << pipeline.schedule.name >> ]
     jobs:
-      - build-and-test:
-          name: job-1
+      - run-api-tests:
+          name: job-name-1
           com: pytest -v -s
-          msg: "run job-1"
-      - build-and-test:
-          name: job-2
-          # requires:
-          #   - job-1
-          com: pytest -v -s # "pytest -v -s requirements.txt"
-          msg: "run job-2"
-      - build-and-test:
-          name: job-3
+          msg: run job-1
+          
+      - run-api-tests:
+          name: job-name-2
+          com: pytest -v -s
+          msg: run job-2
+          
+      - run-api-tests:
+          name: job-name-3
           requires:
-            - job-2
+            - job-name-2
           com: pytest -v -s
-          msg: "run job-3"
+          msg: run job-3
+
+
+
 
 
 
