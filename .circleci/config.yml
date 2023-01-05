@@ -69,7 +69,7 @@ workflows:
 
     jobs:
       - run-api-tests:
-          name: job-1-<< matrix.env >>-<< matrix.reg >>
+          name: job-name-1-<< matrix.env >>-<< matrix.reg >>
           cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
           matrix:
             parameters:
@@ -77,7 +77,7 @@ workflows:
               reg: [aws]
               
       - run-api-tests:
-          name: job-2-<< matrix.env >>-<< matrix.reg >>
+          name: job-name-2-<< matrix.env >>-<< matrix.reg >>
           cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
           matrix:
             parameters:
@@ -87,7 +87,7 @@ workflows:
       - run-api-tests:
           requires:
             - job-name-2-dev-aws
-          name: job-3-<< matrix.env >>-<< matrix.reg >>
+          name: job-name-3-<< matrix.env >>-<< matrix.reg >>
           cmd: pytest -v -s --env < matrix.env >> --reg << matrix.reg >>
           matrix:
             parameters:
