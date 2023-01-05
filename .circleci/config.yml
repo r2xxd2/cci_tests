@@ -80,7 +80,6 @@ workflows:
             exclude:
               - reg: aws
                 env: dev
-                env: stg
                 
                 
 
