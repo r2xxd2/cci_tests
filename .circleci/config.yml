@@ -54,8 +54,8 @@ workflows:
           msg: "run job-2"
       - build-and-test:
           name: job-3
-          # requires:
-          #   - job-2
+          requires:
+            - job-2
           com: pytest -v -s
           msg: "run job-3"
 
