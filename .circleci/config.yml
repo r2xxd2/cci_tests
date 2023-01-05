@@ -20,8 +20,6 @@ jobs:
         type: string
         default: ""
 
-    # echo << parameters.env >>
-    # << parameters.env >>
     steps:
       - checkout
       - run:
