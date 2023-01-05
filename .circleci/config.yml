@@ -13,12 +13,12 @@ jobs:
       msg:
         type: string
         default: ""
-      env:
-        type: string
-        default: ""
-      reg:
-        type: string
-        default: ""
+#       env:
+#         type: string
+#         default: ""
+#       reg:
+#         type: string
+#         default: ""
 
     steps:
       - checkout
@@ -48,21 +48,21 @@ workflows:
       - run-api-tests:
           name: job-name-1
           cmd: pytest -v -s
-          msg: run job-1
+          msg: "run job-1"
           
       - run-api-tests:
           name: job-name-2
           requires:
             - job-name-1
           cmd: pytest -v -s
-          msg: run job-2
+          msg: "run job-2"
           
       - run-api-tests:
           name: job-name-3
           requires:
             - job-name-2
           cmd: pytest -v -s
-          msg: run job-3
+          msg: "run job-3"
 
 
 
