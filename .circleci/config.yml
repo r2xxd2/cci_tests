@@ -78,10 +78,13 @@ workflows:
               env: [dev, stg, prd]
               reg: [aws, eu01, jp]
             exclude:
-              - env: dev
-                reg: eu01
-              - env: dev
-                reg: jp
+              env: [dev, stg, prd]
+              reg: [aws]
+              
+#               - env: dev
+#                 reg: eu01
+#               - env: dev
+#                 reg: jp
               
 #       - run-api-tests:
 #           name: job-name-2-<< matrix.env >>-<< matrix.reg >>
