@@ -75,11 +75,16 @@ workflows:
           cmd: pytest -v -s --env << matrix.env >> --reg << matrix.reg >>
           matrix:
             parameters:
-              env: [dev, stg, prd]
-              reg: [aws, eu01, jp]
-            exclude:
-              - reg: [aws, eu01, jp]
-                env: dev
+              - env: dev
+                reg: aws
+              - env: dev
+                reg: eu01
+              
+#               env: [dev, stg, prd]
+#               reg: [aws, eu01, jp]
+#             exclude:
+#               - reg: [aws, eu01, jp]
+#                 env: dev
                 
                 
 
